@@ -1,0 +1,165 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
+
+.landing {
+  min-height: 100vh;
+  background: $bgcolor;
+}
+
+.landing__header {
+  @include flexDisplay($justify-content: space-between, $gap: 16px);
+  padding: 20px 24px;
+
+  @include respond-to("md") {
+    padding: 24px 48px;
+  }
+}
+
+.landing__brand {
+  @include flexDisplay($gap: 8px);
+  font-weight: 700;
+  font-size: 25px;
+  color: $primary-blue;
+}
+
+.landing__brand-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.landing__nav-cta {
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: $secondary-blue;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.landing__hero {
+  @include flexDisplay($flex-direction: column, $gap: 20px);
+  text-align: center;
+  padding: 56px 24px;
+  max-width: 640px;
+  margin: 0 auto;
+
+  @include respond-to("md") {
+    padding: 80px 24px;
+  }
+}
+
+.landing__hero-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $primary-blue;
+  margin: 0;
+
+  @include respond-to("md") {
+    font-size: 42px;
+  }
+}
+
+.landing__hero-subtitle {
+  font-size: 16px;
+  color: $text-muted-black;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.landing__hero-actions {
+  @include flexDisplay($gap: 12px);
+  flex-wrap: wrap;
+}
+
+.landing__btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+
+  &--primary {
+    background: $secondary-blue;
+    color: #fff;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &--secondary {
+    background: #fff;
+    color: $secondary-blue;
+    border: 1px solid $secondary-blue;
+    &:hover {
+      background: rgba($secondary-blue, 0.06);
+    }
+  }
+}
+
+.landing__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 0 24px 56px;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @include respond-to("sm") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond-to("lg") {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 24px 80px;
+  }
+}
+
+.landing__feature {
+  background: #fff;
+  border: 1px solid rgba($text-muted-black, 0.12);
+  border-radius: 12px;
+  padding: 20px;
+  @include flexDisplay(
+    $flex-direction: column,
+    $align-items: flex-start,
+    $gap: 8px
+  );
+}
+
+.landing__feature-icon {
+  width: 22px;
+  height: 22px;
+  color: $secondary-blue;
+}
+
+.landing__feature-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: $primary-blue;
+  margin: 0;
+}
+
+.landing__feature-description {
+  font-size: 13px;
+  color: $text-muted-black;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.landing__footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 13px;
+  color: $text-muted-black;
+
+  span {
+    color: $success;
+    font-weight: bold;
+    font-size: medium;
+  }
+}

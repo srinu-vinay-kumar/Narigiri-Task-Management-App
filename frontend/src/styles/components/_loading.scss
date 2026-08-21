@@ -1,0 +1,16 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
+
+.loading-container {
+  min-height: 100vh;
+  @include flexDisplay();
+  background: $bgcolor;
+}
+
+.loading-container__icon,
+.dashboard__loading-icon {
+  width: 32px;
+  height: 32px;
+  color: $secondary-blue;
+  animation: spin 1s linear infinite;
+}

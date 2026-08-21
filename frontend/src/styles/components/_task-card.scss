@@ -1,0 +1,157 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+$danger: #d1414b;
+
+.task-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba($text-muted-black, 0.12);
+  padding: 20px;
+  @include flexDisplay(
+    $flex-direction: column,
+    $align-items: stretch,
+    $gap: 12px
+  );
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba($primary-blue, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.task-card__header {
+  @include flexDisplay(
+    $justify-content: space-between,
+    $align-items: flex-start,
+    $gap: 12px
+  );
+}
+
+.task-card__title {
+  color: $primary-blue;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.task-card__priority {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &--low {
+    background: rgba($success, 0.12);
+    color: $success;
+  }
+  &--medium {
+    background: rgba($secondary-blue, 0.12);
+    color: $secondary-blue;
+  }
+  &--high {
+    background: rgba($danger, 0.12);
+    color: $danger;
+  }
+}
+
+.task-card__description {
+  color: $text-muted-black;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  display: -webkit-box;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.task-card__meta {
+  @include flexDisplay($justify-content: flex-start, $gap: 12px);
+  flex-wrap: wrap;
+}
+
+.task-card__date,
+.task-card__location {
+  @include flexDisplay($gap: 4px);
+  font-size: 13px;
+  color: $text-muted-black;
+}
+
+.task-card__meta-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.task-card__attachment {
+  @include flexDisplay($justify-content: flex-start, $gap: 6px);
+  width: fit-content;
+  font-size: 13px;
+  color: $secondary-blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.task-card__footer {
+  @include flexDisplay($justify-content: space-between, $gap: 12px);
+  padding-top: 12px;
+  border-top: 1px solid rgba($text-muted-black, 0.1);
+}
+
+.task-card__status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &--pending {
+    background: rgba($text-muted-black, 0.12);
+    color: $text-nav;
+  }
+  &--in_progress {
+    background: rgba($secondary-blue, 0.12);
+    color: $secondary-blue;
+  }
+  &--completed {
+    background: rgba($success, 0.12);
+    color: $success;
+  }
+}
+
+.task-card__actions {
+  @include flexDisplay($gap: 8px);
+}
+
+.task-card__btn {
+  @include flexDisplay();
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: $bgcolor;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &--edit:hover {
+    background: rgba($secondary-blue, 0.12);
+  }
+  &--delete:hover {
+    background: rgba($danger, 0.12);
+  }
+}
+
+.task-card__btn-icon {
+  width: 16px;
+  height: 16px;
+  color: $text-muted-black;
+}

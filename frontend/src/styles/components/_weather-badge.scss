@@ -1,0 +1,27 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
+
+.weather-badge {
+  @include flexDisplay($gap: 6px);
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba($secondary-blue, 0.08);
+  font-size: 13px;
+  color: $secondary-blue;
+
+  &--loading {
+    color: $text-muted-black;
+    background: rgba($text-muted-black, 0.08);
+  }
+}
+
+.weather-badge__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.weather-badge__desc {
+  text-transform: capitalize;
+  color: $text-muted-black;
+}

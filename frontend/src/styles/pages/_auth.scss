@@ -1,0 +1,121 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
+
+.login-page,
+.register-page {
+  min-height: 100vh;
+  @include flexDisplay($flex-direction: column);
+  padding: 17px;
+}
+
+.page-logo {
+  width: 7%;
+}
+
+.login__container,
+.register__container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 1px 3px rgba($primary-blue, 0.08);
+}
+
+.login-title,
+.register-title {
+  color: $primary-blue;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.login-form,
+.register-form {
+  @include flexDisplay(
+    $flex-direction: column,
+    $align-items: stretch,
+    $gap: 16px
+  );
+}
+
+.login-form__group,
+.register-form__group {
+  position: relative;
+  @include flexDisplay(
+    $flex-direction: column,
+    $align-items: stretch,
+    $gap: 6px
+  );
+}
+
+.login-form__label,
+.register-form__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-nav;
+}
+
+.login-form__input,
+.register-form__input {
+  border: 1px solid rgba($text-muted-black, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: $primary-blue;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-blue;
+  }
+
+  &--error {
+    border-color: #d1414b;
+  }
+}
+
+.login-form__error,
+.register-form__error {
+  color: #d1414b;
+  font-size: 13px;
+}
+
+.form__password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 34px;
+  border: none;
+  background: none;
+  color: $text-muted-black;
+  cursor: pointer;
+}
+
+.login-form__submit,
+.register-form__submit {
+  @include flexDisplay();
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: $secondary-blue;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.auth-form__link-section {
+  text-align: center;
+  margin: 0.5rem 0;
+
+  .auth-form__link {
+    color: $secondary-blue;
+  }
+}

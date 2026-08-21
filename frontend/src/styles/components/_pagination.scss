@@ -1,0 +1,36 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
+
+.pagination {
+  @include flexDisplay($gap: 16px);
+  margin-top: 24px;
+}
+
+.pagination__btn {
+  @include flexDisplay();
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba($text-muted-black, 0.3);
+  background: #fff;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: $secondary-blue;
+  }
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.pagination__icon {
+  width: 16px;
+  height: 16px;
+  color: $text-nav;
+}
+
+.pagination__status {
+  font-size: 14px;
+  color: $text-muted-black;
+}

@@ -1,0 +1,48 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
+
+.navbar {
+  @include flexDisplay($justify-content: space-between, $gap: 16px);
+  padding: 16px 24px;
+  background: #fff;
+  border-bottom: 1px solid rgba($text-muted-black, 0.12);
+
+  @include respond-to("md") {
+    padding: 16px 40px;
+  }
+}
+
+.navbar__brand {
+  text-decoration: none;
+  @include flexDisplay($gap: 8px);
+  color: $primary-blue;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.navbar__brand-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.navbar__actions {
+  @include flexDisplay($gap: 16px);
+}
+
+.navbar__logout {
+  @include flexDisplay($gap: 6px);
+  border: none;
+  background: none;
+  color: $text-muted-black;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    color: #d1414b;
+  }
+}
+
+.navbar__logout-icon {
+  width: 16px;
+  height: 16px;
+}

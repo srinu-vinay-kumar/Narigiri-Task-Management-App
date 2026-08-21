@@ -1,0 +1,17 @@
+@use "./base/reset";
+@use "./components/loading";
+@use "./components/navbar";
+@use "./components/task-card";
+@use "./components/task-modal";
+@use "./components/weather-badge";
+@use "./components/pagination";
+@use "./components/task-filters";
+@use "./pages/auth";
+@use "./pages/dashboard";
+@use "./pages/landing";
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

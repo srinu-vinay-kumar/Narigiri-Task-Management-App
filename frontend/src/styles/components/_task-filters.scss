@@ -1,0 +1,136 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
+
+.dashboard__filters {
+  padding: 0 24px 16px;
+
+  @include respond-to("sm") {
+    padding: 0 40px 20px;
+  }
+}
+
+.task-filters {
+  @include flexDisplay(
+    $flex-direction: column,
+    $align-items: stretch,
+    $gap: 12px
+  );
+  background: #fff;
+  border: 1px solid rgba($text-muted-black, 0.12);
+  border-radius: 12px;
+  padding: 16px;
+
+  @include respond-to("md") {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.task-filters__search {
+  position: relative;
+  width: 100%;
+
+  @include respond-to("md") {
+    flex: 1 1 200px;
+    width: auto;
+  }
+}
+.task-filters__search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: $text-muted-black;
+}
+
+.task-filters__search-input {
+  width: 100%;
+  padding: 9px 12px 9px 36px;
+  border: 1px solid rgba($text-muted-black, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-blue;
+  }
+}
+
+.task-filters__select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid rgba($text-muted-black, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  color: $primary-blue;
+  background: #fff;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-blue;
+  }
+
+  @include respond-to("md") {
+    flex: 1 1 140px;
+    width: auto;
+  }
+}
+
+.task-filters__date-group {
+  @include flexDisplay($gap: 10px, $flex-direction: column);
+  width: 100%;
+
+  @include respond-to("sm") {
+    flex-direction: row;
+  }
+  @include respond-to("md") {
+    flex: 1 1 260px;
+    width: auto;
+  }
+}
+
+.task-filters__date-label {
+  @include flexDisplay(
+    $flex-direction: column,
+    $align-items: stretch,
+    $gap: 4px
+  );
+  font-size: 12px;
+  color: $text-muted-black;
+  flex: 1;
+  width: 100%;
+}
+
+.task-filters__date-input {
+  padding: 8px 10px;
+  border: 1px solid rgba($text-muted-black, 0.3);
+  border-radius: 8px;
+  font-size: 13px;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-blue;
+  }
+}
+
+.task-filters__clear {
+  @include flexDisplay($gap: 6px);
+  border: none;
+  background: none;
+  color: $text-muted-black;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    color: #d1414b;
+  }
+}
+
+.task-filters__clear-icon {
+  width: 14px;
+  height: 14px;
+}
