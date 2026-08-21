@@ -45,13 +45,15 @@ export const createTask = asyncHandler(async (req, res) => {
     fileUrl: uploadedFileUrl,
   });
 
-  const emailSent = await sendEmail(
+  sendEmail(
     req.user.email,
     "New Task Created Successfully",
     `Greetings from Narigiri, Task Management App, You've successfully created the task: ${title}. Its priority is set to ${priority}.`,
+  ).catch((err) =>
+    console.error(`Background email failed for task ${newTask._id}:`, err),
   );
 
-  res.status(201).json({ message: "Task Created.", task: newTask, emailSent });
+  res.status(201).json({ message: "Task Created.", task: newTask });
 });
 
 // @desc        reading all tasks of a user
@@ -156,6 +158,8 @@ export const updateTask = asyncHandler(async (req, res) => {
     throw new Error("Not authorized.");
   }
 
+  const wasCompleted = task.status === "DONE";
+
   if (req.file) {
     const uploadedFileUrl = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
@@ -164,10 +168,7 @@ export const updateTask = asyncHandler(async (req, res) => {
           public_id: `task_file_${id}`,
           overwrite: true,
         },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result.secure_url);
-        },
+        (error, result) => (error ? reject(error) : resolve(result.secure_url)),
       );
       Readable.from(req.file.buffer).pipe(uploadStream);
     });
@@ -175,13 +176,22 @@ export const updateTask = asyncHandler(async (req, res) => {
   }
 
   const updatedTask = await Task.findByIdAndUpdate(id, req.body, {
-    returnDocument: "after",
+    returnDocument: true,
     runValidators: true,
   });
 
+  if (updatedTask.status === "DONE" && !wasCompleted) {
+    sendEmail(
+      req.user.email,
+      "Task Completed",
+      `Nice work — you've marked "${updatedTask.title}" as completed.`,
+    ).catch((err) =>
+      console.error(`Background completion email failed for task ${id}:`, err),
+    );
+  }
+
   res.status(200).json({ message: "Task updated successfully", updatedTask });
 });
-
 // @desc        deleting a task
 // @route       DELETE /api/tasks/:id
 // access       Private who logged in

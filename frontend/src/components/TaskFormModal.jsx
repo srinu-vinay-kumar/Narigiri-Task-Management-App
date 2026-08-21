@@ -76,21 +76,11 @@ const TaskFormModal = ({
       if (data.file?.length > 0) formData.append("file", data.file[0]);
 
       if (isEditMode) {
-        const response = await API.put(`/tasks/${taskToEdit._id}`, formData);
-        toast.success(
-          response.data.emailSent
-            ? "Task updated — completion email sent!"
-            : "Task updated",
-        );
+        await API.put(`/tasks/${taskToEdit._id}`, formData);
+        toast.success("Task Updated");
       } else {
-        const response = await API.post("/tasks", formData);
-        if (response.data.emailSent) {
-          toast.success("Task created — confirmation email sent!");
-        } else {
-          toast("Task created, but the confirmation email couldn't be sent.", {
-            icon: "⚠️",
-          });
-        }
+        await API.post("/tasks", formData);
+        toast.success("Task Created. Email senty");
       }
 
       refreshTasks();
